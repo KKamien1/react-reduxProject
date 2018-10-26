@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 export default class Photo extends Component {
   render() {
     const post = this.props.post;
-    console.log(post);
 
     return (
       <figure className="figure">
