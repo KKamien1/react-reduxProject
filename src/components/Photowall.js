@@ -5,16 +5,14 @@ import { Link } from "react-router-dom";
 
 class Photowall extends Component {
   render() {
+    console.log("Photowall", this.props);
+
     return (
       <div>
         <Link to="/addphoto" className="addIcon" />
-        <div>
-          {this.props.posts.map((post, index) => (
-            <Photo
-              key={index}
-              post={post}
-              onRemovePhoto={this.props.onRemovePhoto}
-            />
+        <div className="photoGrid">
+          {this.props.posts.sort((x, y) => y.id - x.id).map((post, index) => (
+            <Photo key={index} post={post} {...this.props} />
           ))}
         </div>
       </div>
@@ -23,8 +21,7 @@ class Photowall extends Component {
 }
 
 Photowall.propTypes = {
-  posts: PropTypes.array.isRequired,
-  onRemovePhoto: PropTypes.func.isRequired
+  posts: PropTypes.array.isRequired
 };
 
 export default Photowall;

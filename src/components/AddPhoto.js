@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Title from "./Title";
 
 export default class AddPhoto extends Component {
   constructor() {
@@ -13,14 +12,17 @@ export default class AddPhoto extends Component {
     const imageLink = e.target.elements.link.value;
     const description = e.target.elements.description.value;
     if (description && imageLink) {
-      this.props.addPhoto({ imageLink, description });
+      //this.props.addPhoto({ imageLink, description });
+      let post = { imageLink, description };
+      this.props.addPost(post);
+      console.log("history", this.props.onHistory);
+      this.props.onHistory.push("/");
     }
   }
 
   render() {
     return (
       <div>
-        <h1>Photowall</h1>
         <div className="form">
           <form onSubmit={this.handleSubmit}>
             <input type="text" placeholder="Link" name="link" />
