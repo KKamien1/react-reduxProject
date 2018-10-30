@@ -23,7 +23,7 @@ class Photo extends Component {
         <div className="button-container">
           <button
             onClick={() => {
-              this.props.startRemovePost(this.props.index, post.id);
+              this.props.startRemovingPost(this.props.index, post.id);
               this.props.history.push("/");
             }}
             className="remove-button"

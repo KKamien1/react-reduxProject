@@ -10,16 +10,27 @@ class SinglePhoto extends Component {
     const comments = this.props.comments[match.params.id] || [];
     console.log("params from SinglePhoto :", this.props);
     console.log("post", post, "id", id);
-    return (
-      <div className="single-photo">
-        <Photo post={post} {...this.props} />
-        <Comments
-          addComment={this.props.startAddingComment}
-          comments={comments}
-          id={id}
-        />
-      </div>
-    );
+
+    if (this.props.loading) {
+      return <div className="loader">...loading</div>;
+    } else if (post) {
+      return (
+        <div className="single-photo">
+          <Photo post={post} {...this.props} />
+          <Comments
+            addComment={this.props.startAddingComment}
+            comments={comments}
+            id={id}
+          />
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h1>... no post found</h1>
+        </div>
+      );
+    }
   }
 }
 

@@ -13,8 +13,14 @@ import * as actions from "../actions";
 import style from "../style.css";
 
 class Main extends Component {
+  state = {
+    loading: true
+  };
+
   componentDidMount() {
-    this.props.startLoadingPost();
+    this.props.startLoadingPost().then(() => {
+      this.setState({ loading: false });
+    });
     this.props.startLoadingComment();
   }
 
@@ -42,7 +48,13 @@ class Main extends Component {
         />
         <Route
           path="/single/:id"
-          render={params => <SinglePhoto {...this.props} {...params} />}
+          render={params => (
+            <SinglePhoto
+              loading={this.state.loading}
+              {...this.props}
+              {...params}
+            />
+          )}
         />
       </div>
     );
