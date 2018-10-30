@@ -8,14 +8,11 @@ export default class AddPhoto extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(e.target.elements);
     const imageLink = e.target.elements.link.value;
     const description = e.target.elements.description.value;
     if (description && imageLink) {
-      //this.props.addPhoto({ imageLink, description });
-      let post = { imageLink, description };
-      this.props.addPost(post);
-      console.log("history", this.props.onHistory);
+      let post = { imageLink, description, id: Number(new Date()) };
+      this.props.startAddingPost(post);
       this.props.onHistory.push("/");
     }
   }

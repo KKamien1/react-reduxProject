@@ -4,7 +4,6 @@ import { Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import Title from "./Title";
 import Photowall from "./Photowall";
 import AddPhoto from "./AddPhoto";
 import SinglePhoto from "./SinglePhoto";
@@ -14,6 +13,11 @@ import * as actions from "../actions";
 import style from "../style.css";
 
 class Main extends Component {
+  componentDidMount() {
+    this.props.startLoadingPost();
+    this.props.startLoadingComment();
+  }
+
   render() {
     console.log(this.props);
     return (
